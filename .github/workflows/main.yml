@@ -14,7 +14,7 @@ jobs:
 
     - name: call the other repo
       env:
-        GITHUB_TOKEN: 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
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
         EVENT: YOUR_EVENT_TYPE
         ORG: murillowelsi
         REPO: cypress-e2e
