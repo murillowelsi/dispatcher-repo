@@ -14,8 +14,8 @@ jobs:
 
     - uses: convictional/trigger-workflow-and-wait@v1.6.0
       with:
-        owner: keithconvictional
-        repo: myrepo
+        owner: murillowelsi
+        repo: cypress-e2e
         github_token: ${{ secrets.TOKEN }}
         github_user: murillowelsi
         workflow_file_name: main.yml
