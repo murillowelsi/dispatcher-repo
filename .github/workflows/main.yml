@@ -8,17 +8,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: convictional/trigger-workflow-and-wait@v1.6.0
+    - uses: actions/checkout@v1
       with:
-        owner: murillowelsi
-        repo: cypress-e2e
-        github_token: ${{ secrets.TOKEN }}
-        github_user: murillowelsi
-        workflow_file_name: main.yml
-        ref: main
-        wait_interval: 10
-        client_payload: '{}'
-        propagate_failure: false
-        trigger_workflow: true
-        wait_workflow: true
-        last_workflow_interval: 1
+        fetch-depth: 1
+
+    - name: call the other repo
+      env:
+        GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        EVENT: test
+        ORG: murillowelsi
+        REPO: cypress-e2e
+      run: |
+        curl -d "{\"event_type\": \"${EVENT}\"}" -H "Content-Type: application/json" -H "Authorization: token ${GITHUB_TOKEN}" -H "Accept: application/vnd.github.everest-preview+json" "https://api.github.com/repos/${ORG}/${REPO}/dispatches"
