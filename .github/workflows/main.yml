@@ -15,7 +15,7 @@ jobs:
     - name: call the other repo
       env:
         GITHUB_TOKEN: ${{ secrets.TOKEN }}
-        EVENT: YOUR_EVENT_TYPE
+        EVENT: test
         ORG: murillowelsi
         REPO: cypress-e2e
       run: |
