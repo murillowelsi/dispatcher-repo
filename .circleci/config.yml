@@ -14,7 +14,7 @@ jobs:
           name: Trigger the Build Job
           command: |
             curl -u 5ad0780c7d15885b6889aaa841a96848883b4378: \
-            -d 'build_parameters[CIRCLE_JOB]=cypress/install' \
+            -d 'build_parameters[CIRCLE_JOB]=cypress/run' \
             https://circleci.com/api/v1.1/project/github/murillowelsi/cypress-e2e/tree/main
 
 
