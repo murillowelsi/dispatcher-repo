@@ -15,7 +15,7 @@ jobs:
     - name: call the other repo
       env:
         GITHUB_TOKEN: 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
-        EVENT: YOUR_EVENT_TYPE
+        EVENT: E2E Tests
         ORG: murillowelsi
         REPO: cypress-e2e
       run: |
