@@ -8,10 +8,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
-      with:
-        fetch-depth: 1
-
     - uses: convictional/trigger-workflow-and-wait@v1.6.0
       with:
         owner: murillowelsi
