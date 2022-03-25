@@ -2,12 +2,8 @@ version: 2.1
 
 jobs:
   say-hello:
-    # Specify the execution environment. You can specify an image from Dockerhub or use one of our Convenience Images from CircleCI's Developer Hub.
-    # See: https://circleci.com/docs/2.0/configuration-reference/#docker-machine-macos-windows-executor
     docker:
       - image: cimg/base:stable
-    # Add steps to the job
-    # See: https://circleci.com/docs/2.0/configuration-reference/#steps
     steps:
       - run:
             name: Ping another pipeline
@@ -17,3 +13,7 @@ jobs:
                 --header "Circle-Token: 5ad0780c7d15885b6889aaa841a96848883b4378" \
                 --header "content-type: application/json" \
                 --data '{"branch":"main","parameters":{"image-name":"'$DOCKER_LOGIN"/"$CIRCLE_PROJECT_REPONAME":"0.1.<< pipeline.number >>'"}}'
+workflows:
+  say-hello-workflow:
+    jobs:
+      - say-hello
