@@ -12,7 +12,7 @@ jobs:
                 --url https://circleci.com/api/v2/project/gh/murillowelsi/cypress-e2e/pipeline \
                 --header "Circle-Token: 5ad0780c7d15885b6889aaa841a96848883b4378" \
                 --header "content-type: application/json" \
-                --data '{"branch":"main","parameters":{"image-name":"'$DOCKER_LOGIN"/"$CIRCLE_PROJECT_REPONAME":"0.1.<< pipeline.number >>'"}}'
+                --data '{"branch":"main","parameters":{"image-name":cypress-io/cypress@1.29.0/"$CIRCLE_PROJECT_REPONAME":"0.1.<< pipeline.number >>'"}}'
 workflows:
   say-hello-workflow:
     jobs:
