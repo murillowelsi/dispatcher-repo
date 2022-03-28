@@ -19,6 +19,8 @@ jobs:
       - run:
           name: Ping another pipeline
           command: |
+            apt-get install -y jq
+
             CREATED_PIPELINE=$(curl --request POST \
               --url https://circleci.com/api/v2/project/gh/murillowelsi/cypress-e2e/pipeline \
               --header "Circle-Token: 5ad0780c7d15885b6889aaa841a96848883b4378" \
@@ -47,6 +49,8 @@ jobs:
       - run:
           name: Check triggered workflow status
           command: |
+            apt-get install -y jq
+            
             triggered_pipeline_id=$(cat workspace/pipeline.txt)
             created_workflow_status=$(curl --request GET \
                 --url "https://circleci.com/api/v2/pipeline/${triggered_pipeline_id}/workflow" \
