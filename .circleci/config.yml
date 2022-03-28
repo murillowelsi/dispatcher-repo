@@ -24,5 +24,6 @@ workflows:
     jobs:
       - say-hello
       - say-bye:
+          type: approval
           requires:
             - say-hello
