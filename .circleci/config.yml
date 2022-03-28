@@ -18,11 +18,19 @@ jobs:
       - run:
           name: Ping another pipeline
           command: |
-            curl --request POST \
+            CREATED_PIPELINE=$(curl --request POST \
               --url https://circleci.com/api/v2/project/gh/murillowelsi/cypress-e2e/pipeline \
               --header "Circle-Token: 5ad0780c7d15885b6889aaa841a96848883b4378" \
               --header "content-type: application/json" \
-              --data '{"branch":"main"}'
+              --data '{"branch":"main","parameters":{"triggering-pipeline-id":"<< pipeline.id >>"}}' \
+            | jq -r '.id'
+            )
+
+            echo "my created pipeline"
+            echo $CREATED_PIPELINE
+
+            mkdir ~/workspace
+            echo $CREATED_PIPELINE > pipeline.txt
       - persist_to_workspace:
           root: .
           paths: 
