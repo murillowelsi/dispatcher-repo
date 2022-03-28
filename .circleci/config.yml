@@ -5,13 +5,14 @@ orbs:
 
 jobs:
   build-and-test:
-      docker:
-        - image: cimg/base:stable
-      steps:
-        - run: echo "Heyy"
-    
+    docker:
+      - image: cimg/base:2021.11
+    resource_class: small
+    steps:
+      - run: echo "Heyy"
+
   trigger-project-b-pipeline:
-    docker: 
+    docker:
       - image: cimg/base:2021.11
     resource_class: small
     steps:
@@ -33,13 +34,13 @@ jobs:
             echo $CREATED_PIPELINE > pipeline.txt
       - persist_to_workspace:
           root: .
-          paths: 
-            - pipeline.txt  
+          paths:
+            - pipeline.txt
 
   check-status-of-triggered-pipeline:
-    docker: 
+    docker:
       - image: cimg/base:2021.11
-    resource_class: small 
+    resource_class: small
     steps:
       - attach_workspace:
           at: workspace
@@ -58,14 +59,14 @@ jobs:
               echo "Workflow not successful - ${created_workflow_status}"
               (exit -1) 
             fi
-            
+
             echo "Created workflow successful"
 workflows:
   node-test-and-deploy:
     jobs:
       - build-and-test
       - trigger-project-b-pipeline:
-          context: 
+          context:
             - circleci-api
           requires:
             - build-and-test
@@ -74,7 +75,7 @@ workflows:
               only: main
       - wait-for-triggered-pipeline:
           type: approval
-          requires: 
+          requires:
             - trigger-project-b-pipeline
       - check-status-of-triggered-pipeline:
           requires:
