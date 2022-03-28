@@ -5,19 +5,11 @@ orbs:
 
 jobs:
   build-and-test:
-    parameters:
-      node-version:
-        type: string
-        default: "15.10.0"
-    docker:
-      - image: cimg/node:<< parameters.node-version >>
-    parallelism: 4
-    steps:
-      - checkout
-      - node/install-packages
-      - run:
-          command: |
-            npm run test-ci
+    say-bye:
+      docker:
+        - image: cimg/base:stable
+      steps:
+        - run: echo "Bye"
     
   trigger-project-b-pipeline:
     docker: 
