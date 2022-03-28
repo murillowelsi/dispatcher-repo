@@ -5,11 +5,10 @@ orbs:
 
 jobs:
   build-and-test:
-    say-bye:
       docker:
         - image: cimg/base:stable
       steps:
-        - run: echo "Bye"
+        - run: echo "Heyy"
     
   trigger-project-b-pipeline:
     docker: 
